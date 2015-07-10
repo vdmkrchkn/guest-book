@@ -1,0 +1,94 @@
+/**
+ * Created by vadim on 05.07.15.
+ */
+var fs = require("fs");
+var querystring = require("querystring");
+var STORAGE = 'records.txt';
+
+function start(response) {
+    console.log("Request handler 'start' was called.");
+    getHtmlResponse("index.html",response);
+}
+
+function upload(response,postData) {
+    console.log("Request handler 'upload' was called.");
+    if(postData) {
+        var name = querystring.parse(postData).name;
+        var dt = new Date().toISOString();
+        var mail = querystring.parse(postData).mail;
+        var comment = querystring.parse(postData).text;
+        var content = name + ';' + mail + ";" + dt + ';' + comment + "\n";
+        // запись содержимого в файл
+        fs.appendFile(STORAGE, content, function (err) {
+            if (err) 
+                console.log(err);
+            else {
+                console.log('New comment\'s data was appended to file!');
+                response.writeHead(200, {"Content-Type": "text/html"});    
+                response.write('<form action="/show"></form>');
+                response.end();
+            }
+        });
+    }   
+}
+
+function show(response) {
+    console.log("Request handler 'show' was called.");        
+    // парсинг файла с записями
+    fs.readFile(STORAGE, function (error, data) {  
+        if (error) {
+            // throw error;            
+            response.writeHead(500, {"Content-Type": "text/plain"});
+            response.write(error + "\n");
+            response.end();
+        } 
+        else {
+            // формирование html с заголовком таблицы
+            var content = '<html><head>' +
+                '<meta content="text/html" charset="UTF-8"></head>' +
+                '<body><table border="1" cellpadding="5">' +
+                '<tr>' + 
+                '<th>Name</th>' +
+                '<th>E-mail</th>' + 
+                '<th>Date</th>' +
+                '<th>Comment</th></tr>';
+            // преобразование буфера data в string
+            var text = data.toString();
+            // разбиение строки по записям
+            var lines = text.split('\n');
+            lines.forEach(function(line) {
+                if(line) {
+                var fields = line.split(';');
+                // преобразование значений записи в html
+                content += '<tr><td>' + fields[0] + '</td>';// name
+                content += '<td>' + fields[1] + '</td>';    // mail
+                content += '<td>' + fields[2] + '</td>';    // time
+                content += '<td>' + fields[3] + '</td>';    // comment
+                content += '</tr>';
+            }
+            });
+            content += '</table></body></html>';
+            // отдача содержимого браузеру
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.write(content);
+            response.end();
+        }
+    });    
+}
+
+exports.start = start;
+exports.upload = upload;
+exports.show = show;
+
+function getHtmlResponse(filename,response) {
+    if(!fs.existsSync(filename)) {
+        console.log(filename + ' not found');
+        response.writeHead(404, {"Content-Type": "text/plain"});
+        response.write("404 Not found");
+        response.end();
+    }
+    else {
+        response.writeHead(200, {"Content-Type": "text/html"});
+        response.end(fs.readFileSync(filename, {'encoding': 'utf-8'}));
+    }
+}

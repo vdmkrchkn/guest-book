@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Guest book</title>
+</head>
+<body>
+    <form name="data" method="post" action="/upload">
+        <p>
+            <b>Ваше имя:</b><br>
+            <input type="text" name="name" size="20" required/>
+        </p>
+        <p>
+            <b>Ваш e-mail:</b><br>
+            <input type="text" name="mail" size="20" required/>
+        </p>
+        <p>
+            Комментарий<br>
+            <textarea name="text" rows="5" cols="20" required></textarea>
+        </p>
+        <input type="submit" value="Отправить" />
+        <input type="reset" value="Очистить">
+    </form>        
+    <hr>    
+</body>
+</html>
