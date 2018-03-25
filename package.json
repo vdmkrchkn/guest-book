@@ -1,0 +1,27 @@
+{
+  "name": "guest-book",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "dependencies": {
+    "config": "^1.30.0",
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.9",
+    "nconf": "^0.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vdmkrchkn/guest-book.git"
+  },
+  "author": "vdmkrchkn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vdmkrchkn/guest-book/issues"
+  },
+  "homepage": "https://github.com/vdmkrchkn/guest-book#readme"
+}

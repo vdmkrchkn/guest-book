@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var config = require('config');
+var config = require('./config');
 
-console.log('NODE_CONFIG_DIR: ' + config.util.getEnv('NODE_CONFIG_DIR'));
-mongoose.connect(config.get('mongoose_uri'));
+mongoose.connect(config.get('mongoose:uri'));
+console.log(`Successfully connected to DB on port ${config.get('mongoose:port')}`);
 
 module.exports = mongoose;

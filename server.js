@@ -14,12 +14,12 @@ function start(port, route, handle) {
 		});
 		//
 		request.addListener("end", function() {			
-			route(handle,pathname,response,postData);
+			route(handle, pathname, response, postData);
         });
         //        
 	}).listen(port); // прослушка
 	// сообщение о начале работы
-	console.log("Server has started.");
+	console.log(`Server has started on port ${port}.`);
 }
 //
 exports.start = start;
