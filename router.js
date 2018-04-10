@@ -1,12 +1,15 @@
 /**
- * Created by vadim on 05.07.15.
+ * Created by vdmkrchkn on 05.07.15.
  */
-function route(handle,pathname,response,postData) {
-    console.log("Routing a request for " + pathname);
+var log = require('./log');
+
+function route(handle, pathname, response, postData) {
+    log.info(`Routing a request for ${pathname}.`);
     if (typeof handle[pathname] === 'function') {
-        return handle[pathname](response,postData);
+        return handle[pathname](response, postData);
     } else {
-        console.log("No request handler found for " + pathname);
+        log.error(`No request handler found for ${pathname}.`);
+        //
         response.writeHead(404, {"Content-Type": "text/plain"});
         response.write("404 Not found");
         response.end();

@@ -5,9 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "config": "^1.30.0",
+    "moment": "^2.22.0",
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.9",
-    "nconf": "^0.10.0"
+    "nconf": "^0.10.0",
+    "winston": "^2.4.1"
   },
   "devDependencies": {},
   "scripts": {

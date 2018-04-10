@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
-var config = require('./config');
+var mongoose = require('mongoose'),
+    config = require('./config'),
+    log = require('./log');
 
 mongoose.connect(config.get('mongoose:uri'));
-console.log(`Successfully connected to DB on port ${config.get('mongoose:port')}`);
+log.info(`Successfully connected to DB on port ${config.get('mongoose:port')}`);
 
 module.exports = mongoose;

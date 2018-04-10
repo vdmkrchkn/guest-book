@@ -2,6 +2,7 @@ var server = require("./server");
 var router = require("./router");
 var requestHandlers = require("./requestHandlers");
 var config = require('./config');
+var log = require('./log');
 //
 var handle = {};
 handle["/"] = requestHandlers.start;
@@ -14,4 +15,4 @@ var port = config.get('port');
 if(port != undefined)
     server.start(port, router.route, handle);
 else
-    console.error('неверно задан порт сервера')
+    log.error('Неверно задан порт сервера.')

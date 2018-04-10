@@ -1,5 +1,6 @@
 var mongoose = require('../mongoose'),
     Schema = mongoose.Schema;
+var moment = require('moment');
 
 var schema = Schema({
     name: {
@@ -21,7 +22,12 @@ var schema = Schema({
 });
 
 schema.methods.Contact = function(){
-    return this.get(name) + '(email = ' + this.get(email) + ')';
+    return this.get('name') +
+            ` (email = ${this.get('email')})`;
+};
+
+schema.methods.DateTime = function(){
+    return moment(this.get('dateTime')).format('DD-MM-YYYY HH:mm:ss');    
 };
 
 exports.Comment = mongoose.model('Comment', schema);
