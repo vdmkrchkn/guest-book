@@ -11,8 +11,7 @@ function route(handle, pathname, response, postData) {
         log.error(`No request handler found for ${pathname}.`);
         //
         response.writeHead(404, {"Content-Type": "text/plain"});
-        response.write("404 Not found");
-        response.end();
+        response.end("404 Not found");
     }
 }
 

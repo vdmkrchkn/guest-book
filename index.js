@@ -8,7 +8,6 @@ var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
 handle["/show"] = requestHandlers.show;
-
 //
 var port = config.get('port');
 

@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Guest book</title>
+    <link rel="stylesheet" type="text/css" href="styles/mysite.css" />
     <script type="text/javascript">
         // отправка запроса
         function submitData() {
@@ -11,7 +12,7 @@
                 return;
             xmlHttpObj.open('POST', '/upload');
             // добавление заголовка в запрос
-            xmlHttpObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');        
+            xmlHttpObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             // обработчик изменения состояния запроса
             xmlHttpObj.onreadystatechange = function () {
                 if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200){
@@ -30,22 +31,45 @@
     </script>
 </head>
 <body>
-    <form name="data" method="post">
-        <p>
-            <b>Ваше имя:</b><br>
-            <input type="text" name="name" size="20" required/>
-        </p>
-        <p>
-            <b>Ваш e-mail:</b><br>
-            <input type="text" name="mail" size="20" required/>
-        </p>
-        <p>
-            Комментарий<br>
-            <textarea name="text" rows="5" cols="20" required></textarea>
-        </p>
-        <input type="submit" value="Отправить" />
-        <input type="reset" value="Очистить">
-    </form>        
-    <hr>    
+    <se>
+        <section>
+            header
+        </section>
+        <hr>
+        <section>
+            <div>
+                Съёмки фильма Полипропилен
+            </div>
+            <div>
+                Хороший язык
+            </div>
+            <div>
+                <img src="assets/img/cat-1.jpg" />
+                <img src="assets/img/cat-5.jpg" />
+            </div>
+            <section>
+                <form name="data" method="post">
+                    <p>
+                        <b>Ваше имя:</b><br>
+                        <input type="text" name="name" size="20" required/>
+                    </p>
+                    <p>
+                        <b>Ваш e-mail:</b><br>
+                        <input type="text" name="mail" size="20" required/>
+                    </p>
+                    <p>
+                        Комментарий<br>
+                        <textarea name="text" rows="5" cols="20" required></textarea>
+                    </p>
+                    <input type="submit" value="Отправить" />
+                    <input type="reset" value="Очистить">
+                </form>
+            </section>
+        </section>
+        <hr>
+        <section>
+            footer
+        </section>
+    </div>
 </body>
 </html>
