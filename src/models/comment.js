@@ -27,7 +27,7 @@ schema.methods.Contact = function(){
 };
 
 schema.methods.DateTime = function(){
-    return moment(this.get('dateTime')).format('DD-MM-YYYY HH:mm:ss');    
+    return moment(this.get('dateTime')).format('DD-MM-YYYY HH:mm:ss');
 };
 
 exports.Comment = mongoose.model('Comment', schema);

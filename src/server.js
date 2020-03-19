@@ -2,7 +2,7 @@
 var http = require("http"),
 	url = require("url"),
     stream = require('./log').stream,
-    static = require('./src/staticHandlers');
+    static = require('./staticHandlers');
 
 // включение сервера
 function start(port, route, handle) {

@@ -1,5 +1,5 @@
 var fs  = require('fs'),
-    log = require('../log'),
+    log = require('./log'),
     path = require('path');
 
 function favicon(response) {

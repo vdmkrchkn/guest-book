@@ -11,7 +11,7 @@ handle["/show"] = requestHandlers.show;
 //
 var port = config.get('port');
 
-if(port != undefined)
+if(port)
     server.start(port, router.route, handle);
 else
     log.error('Неверно задан порт сервера.')
