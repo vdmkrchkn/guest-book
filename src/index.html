@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru-RU">
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Guest book</title>
-    <link rel="stylesheet" type="text/css" href="styles/mysite.css" />
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" />
     <script type="text/javascript">
         // отправка запроса
         function submitData() {
@@ -31,23 +32,100 @@
     </script>
 </head>
 <body>
-    <se>
-        <section>
-            header
-        </section>
-        <hr>
-        <section>
-            <div>
-                Съёмки фильма Полипропилен
+    <section>
+        TODO: header
+    </section>
+    <section>
+        <div class="flex-col">
+            <div class="row">
+                <div class="flex-col">
+                    <div id="header">
+                        Полипропилен
+                    </div>
+                    <div id="header-bold">
+                        Съёмки фильма
+                    </div>
+                    <p class="description">
+                        История о том, как снимали фильм, где герои отдыхали на пляже,
+                        потом пришёл антагонист, избил протагонистов, сбросил их в
+                        бассейн, и что из этого получилось.
+                    </p>
+                    <ul>
+                        <li class="description">
+                            Very easy to use, no coding or data science knowledge
+                            is required to build custom AI solutions
+                        </li>
+                        <li class="description">
+                            No special background in IT, Artificial Intelligence (AI)
+                            and Machine Learning (ML) is needed
+                        </li>
+                        <li class="description">
+                            Resulting models are very compact, fast and accurate
+                            with fewer samples required
+                        </li>
+                    </ul>
+                    <button class="Rectangle">
+                        Free Trial
+                    </button>
+                </div>
+                <div class="img-container ml-104">
+                    <div class="img-back">
+                        <img src="" class="hidden" />
+                    </div>
+                    <div class="img-front">
+                        <img src="" class="hidden" />
+                    </div>
+                </div>
             </div>
-            <div>
-                Хороший язык
+            <div class="row">
+                <div class="img-container">
+                    <div class="img-back_2">
+                        <img src="assets/img/cat-1.jpg" class="hidden" />
+                    </div>
+                    <div class="img-front_2">
+                        <img src="assets/img/cat-5.jpg" class="hidden" />
+                    </div>
+                </div>
+                <div class="flex-col ml-104">
+                    <div class="header-bold_2">
+                        Хороший язык?
+                    </div>
+                    <p class="description">
+                        История о том, как проходила студия изучения языка эсперанто,
+                        в то время, как над ней, на веранде велась студия приколистов,
+                        где травились анекдоты, и что из этого получилось.
+                    </p>
+                    <ul>
+                        <li>
+                            <div>10 times faster</div>
+                            <div>Go To Market</div>
+                        </li>
+                        <li>
+                            <div>50% less cost</div>
+                            <div>of implementation</div>
+                        </li>
+                        <li>
+                            <div>50% less cost</div>
+                            <div>of support</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <img src="assets/img/cat-1.jpg" />
-                <img src="assets/img/cat-5.jpg" />
+            <div class="row">
+                <div class="header-bold_2">
+                    Возможности и цены
+                </div>
+                <table></table>
+                <div>
+                    <div class="">
+                        <img src="assets/img/cat-1.jpg" class="hidden" />
+                    </div>
+                    <div class="">
+                        <img src="assets/img/cat-5.jpg" class="hidden" />
+                    </div>
+                </div>
             </div>
-            <section>
+            <section class="hidden">
                 <form name="data" method="post">
                     <p>
                         <b>Ваше имя:</b><br>
@@ -65,11 +143,11 @@
                     <input type="reset" value="Очистить">
                 </form>
             </section>
-        </section>
-        <hr>
-        <section>
-            footer
-        </section>
-    </div>
+        </div>
+    </section>
+    <hr>
+    <section>
+        TODO: footer
+    </section>
 </body>
 </html>

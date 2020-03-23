@@ -1,0 +1,104 @@
+/* @font-face {
+    font-family: "Open Sans";
+    src: url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic");
+} TODO: connect this way */
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.ml-104 {
+    margin-left: 104px;
+}
+
+.row {
+    display: flex;
+    margin-top: 10px;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%; /* FIXME: */
+}
+
+#header {
+    font-size: 74px;
+}
+
+#header-bold {
+    font-size: 74px;
+    font-weight: bold;
+}
+
+.header-bold_2 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 16px;
+    font-weight: normal; /* FIXME: bold 4 OpenSans */
+    line-height: 1.63;
+}
+
+button.Rectangle {
+    width: 176px;
+    height: 48px;
+    background-color: #fff;
+    border: solid 2px #ec006d;
+    box-shadow: 2px 2px 10px 0 rgba(236, 0, 109, 0.15);
+    padding: 14px 44px 15px;
+}
+
+.img-container {
+    height: 720px;
+}
+
+.img-back {
+    position: absolute;
+    width: 840px;
+    height: inherit;
+    background-color: #a6adb2;
+}
+
+.img-front {
+    position: relative;
+    right: 104px;
+    top: 241px;
+    width: 488px;
+    height: 479px;
+    background-color: #c4c7c8;
+    animation: imgUpShift 3s ease;
+}
+
+@keyframes imgUpShift {
+    from {
+        top: 241px;
+    }
+
+    to {
+        top: 211px;
+    }
+}
+
+.img-back_2 {
+    position: absolute;
+    width: 488px;
+    height: inherit;
+    background-color: #a6adb2;
+}
+
+.img-front_2 {
+    position: relative;
+    left: 104px;
+    top: 241px;
+    width: 488px;
+    height: 479px;
+    background-color: #c4c7c8;
+    animation: imgUpShift 3s ease;
+}
