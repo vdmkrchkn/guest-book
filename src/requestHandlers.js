@@ -8,7 +8,7 @@ var fs  = require('fs'),
     path = require('path');
 
 function start(response) {
-    const filename = path.join(__dirname, 'index.html');
+    const filename = path.join('build', 'index.html');
 
     if(!fs.existsSync(filename)) {
         log.error(`${filename} not found.`);

@@ -3,7 +3,7 @@ var fs  = require('fs'),
     path = require('path');
 
 function favicon(response) {
-    const filename = path.join(__dirname, 'assets', 'img', 'favicon.ico');
+    const filename = path.join(__dirname, '..', 'assets', 'img', 'favicon.ico');
 
     if(!fs.existsSync(filename)) {
         log.error(`${filename} not found.`);
@@ -18,7 +18,7 @@ function favicon(response) {
 }
 
 function css(response) {
-    const filename = path.join(__dirname, 'styles', 'mysite.css');
+    const filename = path.join(__dirname, '..', 'build', 'css', 'main.css');
 
     if(!fs.existsSync(filename)) {
         log.error(`${filename} not found.`);
@@ -31,5 +31,20 @@ function css(response) {
     }
 }
 
+function js(response) {
+    const filename = path.join(__dirname, '..', 'build', 'js', 'main.js');
+
+    if(!fs.existsSync(filename)) {
+        log.error(`${filename} not found.`);
+
+        response.writeHead(404, {"Content-Type": "text/plain"});
+        response.end("404 Not found");
+    } else {
+        response.writeHead(200, {"Content-Type": "text/javascript"});
+        response.end(fs.readFileSync(filename, {'encoding': 'utf-8'}));
+    }
+}
+
 exports.favicon = favicon;
 exports.css = css;
+exports.js = js;

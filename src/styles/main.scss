@@ -1,7 +1,7 @@
 /* @font-face {
     font-family: "Open Sans";
     src: url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic");
-} TODO: connect this way */
+} */ /* TODO: connect this way */
 
 body {
     font-family: "Open Sans", sans-serif;
@@ -66,13 +66,20 @@ button.Rectangle {
     background-color: #a6adb2;
 }
 
-.img-front {
+#img-front {
     position: relative;
     right: 104px;
     top: 241px;
     width: 488px;
     height: 479px;
     background-color: #c4c7c8;
+}
+
+#img-front.active {
+    animation: imgUpShift 3s ease;
+}
+
+#img-front_2.active {
     animation: imgUpShift 3s ease;
 }
 
@@ -93,12 +100,11 @@ button.Rectangle {
     background-color: #a6adb2;
 }
 
-.img-front_2 {
+#img-front_2 {
     position: relative;
     left: 104px;
     top: 241px;
     width: 488px;
     height: 479px;
     background-color: #c4c7c8;
-    animation: imgUpShift 3s ease;
 }

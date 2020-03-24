@@ -33,31 +33,42 @@ var path = {
 };
 
 gulp.task('html:build', function (cb) {
-    gulp.src(path.src.html) //Выберем файлы по нужному пути
-        .pipe(rigger()) //Прогоним через rigger
-        .pipe(gulp.dest(path.build.html)); //Выплюнем их в папку build
+    gulp.src(path.src.html)
+        .pipe(rigger())                     // для преобразования шаблонов
+        .pipe(gulp.dest(path.build.html));
 
     cb();
 });
 
 gulp.task('style:build', function (cb) {
-    gulp.src(path.src.style) //Выберем наш main.scss
-        .pipe(sourcemaps.init()) //Инициализируем sourcemap
-        .pipe(sass()) //Скомпилируем
+    gulp.src(path.src.style)
+        .pipe(sourcemaps.init())            //Инициализация sourcemap
+        .pipe(sass())                       //Компиляция
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.css)); //И в build
+        .pipe(gulp.dest(path.build.css));
 
     cb();
 });
 
-gulp.task('build', gulp.series('style:build', 'html:build'));
+gulp.task('js:build', function (cb) {
+    gulp.src(path.src.js)
+        .pipe(rigger())                     //?
+        .pipe(sourcemaps.init())            //Инициализация sourcemap
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.build.js));
+
+    cb();
+});
+
+gulp.task('build', gulp.series('style:build', 'js:build', 'html:build'));
 
 // задача на запуск задач, соответствующих измененному файлу
 gulp.task('watch', function(cb){
+    watch([path.watch.html], gulp.series('html:build'));
+    watch([path.watch.js], gulp.series('js:build'));
+    watch([path.watch.style], gulp.series('style:build'));
+
     cb();
-    // TODO:
-    watch([path.watch.html], 'html:build');
-    watch([path.watch.style], 'style:build');
 });
 
 gulp.task('default', gulp.series('build', 'watch'));
