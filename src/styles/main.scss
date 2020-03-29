@@ -62,10 +62,17 @@ button.Rectangle {
     margin-top: 32px;
     width: 176px;
     height: 48px;
-    background-color: #fff;
-    border: solid 2px #ec006d;
+    background-color: white;
+    border: solid 2px red;
     box-shadow: 2px 2px 10px 0 rgba(236, 0, 109, 0.15);
     padding: 14px 44px 15px;
+    transition-property: background-color, color;
+    transition-duration: 1000ms, 500ms;
+}
+
+button.Rectangle:hover {
+    background-color: red;
+    color: white;
 }
 
 .img-container {
