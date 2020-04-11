@@ -8,9 +8,9 @@
     <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
-    //= template/header.html
-    <section>
-        <div class="flex-col">
+    <div class="container">
+        //= template/header.html
+        <section>
             <div class="row">
                 <div class="flex-col">
                     <div id="header">
@@ -46,7 +46,7 @@
                     <div class="img-back">
                         <img src="" class="hidden" />
                     </div>
-                    <div id="img-front">
+                    <div id="elem-pos-left" class="img-front">
                         <img src="" class="hidden" />
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="img-back_2">
                         <img src="assets/img/cat-1.jpg" class="hidden" />
                     </div>
-                    <div id="img-front_2">
+                    <div id="elem-pos-right" class="img-front">
                         <img src="assets/img/cat-5.jpg" class="hidden" />
                     </div>
                 </div>
@@ -91,17 +91,17 @@
                 </div>
                 <table></table>
                 <div>
-                    <div class="">
+                    <div>
                         <img src="assets/img/cat-1.jpg" class="hidden" />
                     </div>
-                    <div class="">
+                    <div>
                         <img src="assets/img/cat-5.jpg" class="hidden" />
                     </div>
                 </div>
             </div>
             //= template/addComment.html
-        </div>
-    </section>
-    //= template/footer.html
+        </section>
+        //= template/footer.html
+    </div>
 </body>
 </html>

@@ -5,6 +5,7 @@
 
 body {
     font-family: "Open Sans", sans-serif;
+    margin: 0;
 }
 
 .hidden {
@@ -15,6 +16,12 @@ body {
     margin-left: 104px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 352px;
+}
+
 .row {
     display: flex;
     margin-top: 10px;
@@ -23,7 +30,7 @@ body {
 .flex-col {
     display: flex;
     flex-direction: column;
-    flex-basis: 50%; /* FIXME: */
+    flex-basis: 50%;
 }
 
 #header {
@@ -31,7 +38,7 @@ body {
 }
 
 #header-bold {
-    font-size: 74px;
+    font-size: 69px;
     font-weight: bold;
 }
 
@@ -40,13 +47,19 @@ body {
     font-weight: bold;
 }
 
-.description {
+p.description {
+    margin-top: 64px;
     font-size: 16px;
     font-weight: normal; /* FIXME: bold 4 OpenSans */
     line-height: 1.63;
 }
 
+ul {
+    margin-top: 32px;
+}
+
 button.Rectangle {
+    margin-top: 32px;
     width: 176px;
     height: 48px;
     background-color: #fff;
@@ -66,31 +79,24 @@ button.Rectangle {
     background-color: #a6adb2;
 }
 
-#img-front {
+.img-front {
     position: relative;
-    right: 104px;
     top: 241px;
+    transition-property: top;
+    transition-duration: 3s;
     width: 488px;
     height: 479px;
     background-color: #c4c7c8;
 }
 
-#img-front.active {
-    animation: imgUpShift 3s ease;
+// left shifted
+#elem-pos-left {
+    right: 104px;
 }
 
-#img-front_2.active {
-    animation: imgUpShift 3s ease;
-}
-
-@keyframes imgUpShift {
-    from {
-        top: 241px;
-    }
-
-    to {
-        top: 211px;
-    }
+// right shifted
+#elem-pos-right {
+    left: 104px;
 }
 
 .img-back_2 {
@@ -98,13 +104,4 @@ button.Rectangle {
     width: 488px;
     height: inherit;
     background-color: #a6adb2;
-}
-
-#img-front_2 {
-    position: relative;
-    left: 104px;
-    top: 241px;
-    width: 488px;
-    height: 479px;
-    background-color: #c4c7c8;
 }

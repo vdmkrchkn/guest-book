@@ -1,21 +1,19 @@
 // отправка запроса
 function submitData() {
-    var xmlHttpObj = window.XMLHttpRequest ? new XMLHttpRequest() : false; // создание объекта XHR
-    if (!xmlHttpObj)
-        return;
-    xmlHttpObj.open('POST', '/upload');
-    // добавление заголовка в запрос
-    xmlHttpObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // обработчик изменения состояния запроса
-    xmlHttpObj.onreadystatechange = function () {
-        if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200){
-            alert(xmlHttpObj.responseText);
-        }
-    };
-    xmlHttpObj.send('name=' + document.data.name.value +
-     '&mail=' +  document.data.mail.value +
-     '&text=' + document.data.text.value
-    );
+    let xmlHttpObj = window.XMLHttpRequest ? new XMLHttpRequest() : false; // создание объекта XHR
+    if (xmlHttpObj) {
+        xmlHttpObj.open('POST', '/upload');
+        // добавление заголовка в запрос
+        xmlHttpObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // обработчик изменения состояния запроса
+        xmlHttpObj.onreadystatechange = function () {
+            if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200){
+                alert(xmlHttpObj.responseText);
+            }
+        };
+
+        xmlHttpObj.send(`name=${document.data.name.value}&mail=${document.data.mail.value}&text=${document.data.text.value}`);
+    }
 }
 
 window.onload = function () {
@@ -35,27 +33,25 @@ window.onload = function () {
 
         isScrolling = false;
     }
-    var images = [document.querySelector('#img-front'), document.querySelector('#img-front_2')];
+    var images = document.querySelectorAll('.img-front');
     //
     function scrolling(e) {
-        for (let i = 0; i < images.length; ++i) {
-            const image = images[i];
-
-            if (isPartiallyVisible(image)) {
-                image.classList.add("active");
+        for (let image of images) {
+            if (isElemVisible(image)) {
+                image.style.top = '211px';
             } else {
-                image.classList.remove("active");
+                image.style.top = '241px';
             }
         }
     }
 
-    function isPartiallyVisible(element) {
+    function isElemVisible(element, isPartially = false) {
         var elementBoundary = element.getBoundingClientRect();
 
         var top = elementBoundary.top;
         var bottom = elementBoundary.bottom;
-        var height = elementBoundary.height;
+        var height = isPartially ? elementBoundary.height : 0;
 
-        return ((top + height >= 0) && (height + window.innerHeight >= bottom));
+        return ((-height <= top) && (bottom <= height + window.innerHeight));
     }
 }
