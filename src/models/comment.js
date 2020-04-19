@@ -1,33 +1,33 @@
-var mongoose = require('../mongoose'),
-    Schema = mongoose.Schema;
-var moment = require('moment');
+const mongoose = require('../mongoose');
+const Schema = mongoose.Schema;
+const moment = require('moment');
 
-var schema = Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    text: {
-        type: String,
-        required: true
-    },
-    dateTime: {
-        type: Date,
-        default: Date.now
-    }
+const schema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  dateTime: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-schema.methods.Contact = function(){
-    return this.get('name') +
+schema.methods.getContact = function() {
+  return this.get('name') +
             ` (email = ${this.get('email')})`;
 };
 
-schema.methods.DateTime = function(){
-    return moment(this.get('dateTime')).format('DD-MM-YYYY HH:mm:ss');
+schema.methods.getPrettyDateTime = function() {
+  return moment(this.get('dateTime')).format('DD-MM-YYYY HH:mm:ss');
 };
 
 exports.Comment = mongoose.model('Comment', schema);

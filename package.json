@@ -28,6 +28,7 @@
     "start": "node src/index.js",
     "build": "gulp",
     "clean": "gulp clean",
+    "eslint": "node_modules/.bin/eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
