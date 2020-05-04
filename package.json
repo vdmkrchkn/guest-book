@@ -20,14 +20,16 @@
     "gulp-rigger": "^0.5.8",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-watch": "^5.0.1",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "node src/index.js",
-    "build": "gulp",
-    "clean": "gulp clean",
+    "gulp-build": "gulp",
+    "clean": "rm -rf node_modules/",
+    "gulp-clean": "gulp clean",
     "eslint": "node_modules/.bin/eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

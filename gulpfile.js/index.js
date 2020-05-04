@@ -5,26 +5,27 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
-    rimraf = require('rimraf');
+    rimraf = require('rimraf'),
+    ts = require('gulp-typescript');
 
 var path = {
-    build: { //Тут мы укажем куда складывать готовые после сборки файлы
+    build: { // относительные пути готовых после сборки файлов
         html: 'build/',
         js: 'build/js/',
         css: 'build/css/',
         img: 'build/img/',
         fonts: 'build/fonts/'
     },
-    src: { //Пути откуда брать исходники
-        html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-        js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
-        style: 'src/styles/main.scss',
-        img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+    src: { // пути откуда брать исходники
+        html: 'src/*.html',
+        ts: 'src/js/main.ts', // В скриптах только main файлы
+        style: 'src/styles/main.scss', // и стилях
+        img: 'src/img/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*'
     },
-    watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+    watch: { // типы файлов, за изменением которых наблюдать
         html: 'src/**/*.html',
-        js: 'src/js/**/*.js',
+        js: 'src/js/**/*.ts',
         style: 'src/styles/**/*.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -51,11 +52,13 @@ gulp.task('style:build', function (cb) {
 });
 
 gulp.task('js:build', function (cb) {
-    gulp.src(path.src.js)
-        .pipe(rigger())                     //?
-        .pipe(sourcemaps.init())            //Инициализация sourcemap
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.js));
+    let tsProject = ts.createProject('tsconfig.json');    
+    tsProject.src()
+        .pipe(tsProject())
+        //.pipe(rigger())                  // TODO:
+        // .pipe(sourcemaps.init())        // Инициализация sourcemap
+        // .pipe(sourcemaps.write())
+        .js.pipe(gulp.dest(path.build.js));
 
     cb();
 });

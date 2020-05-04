@@ -1,0 +1,11 @@
+{
+    "files": [
+        "src/js/main.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "target": "es5"
+    }
+}

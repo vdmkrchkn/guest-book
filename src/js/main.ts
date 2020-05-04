@@ -1,5 +1,19 @@
-/** отправка запроса */
-function submitData() {
+interface FeedbackComment {
+  name: string;
+  mail: string;
+  text: string;
+}
+
+// отправка запроса
+function submitData(data: Event) {
+  data.preventDefault();
+
+  const comment: FeedbackComment = {
+    name: '', // FIXME: data.currentTarget[0]
+    mail: '',
+    text: '',
+  };
+
   const xmlHttpObj = window.XMLHttpRequest ? new XMLHttpRequest() : false; // создание объекта XHR
   if (xmlHttpObj) {
     xmlHttpObj.open('POST', '/upload');
@@ -11,25 +25,27 @@ function submitData() {
         alert(xmlHttpObj.responseText);
       }
     };
+
     // eslint-disable-next-line max-len
-    xmlHttpObj.send(`name=${document.data.name.value}&mail=${document.data.mail.value}&text=${document.data.text.value}`);
+    xmlHttpObj.send(`name=${comment.name}&mail=${comment.mail}&text=${comment.text}`);
   }
 }
 
 window.onload = function() {
   // обработчик отправки формы
-  document.data.onsubmit = submitData;
+  const form = document.getElementById('data');
+  if (form) form.onsubmit = submitData;
   //
   window.addEventListener('scroll', throttleScroll, false);
   let isScrolling = false;
   /** Обёртка для обработчика события прокрутки страницы.
    * Частота вызова обработчика зависит от частоты обновления кадров страницы.
-   * @param {any} e - srcoll event.
+   * @param {Event} event - scroll event.
    */
-  function throttleScroll(e) {
+  function throttleScroll(event: Event) {
     if (!isScrolling) {
       window.requestAnimationFrame(function() {
-        scrolling(e);
+        scrolling(event);
         isScrolling = true;
       });
     }
@@ -39,24 +55,24 @@ window.onload = function() {
   const images = document.querySelectorAll('.img-front');
   /**
    * Обработчик события прокрутки страницы.
-   * @param {any} e - srcoll event.
+   * @param {Event} e - scroll event.
    */
-  function scrolling(e) {
-    for (const image of images) {
+  function scrolling(e: Event) {
+    images.forEach(image => {
       if (isElemVisible(image)) {
-        image.style.top = '211px';
+        (image as HTMLElement).style.top = '211px';
       } else {
-        image.style.top = '241px';
+        (image as HTMLElement).style.top = '241px';
       }
-    }
+    });
   }
   /**
    * Определение признака видимости элемента на экране.
-   * @param {any} element - элемент, для которого определяется видимость.
+   * @param {Element} element - элемент, для которого определяется видимость.
    * @param {boolean} isPartially - признак частичной видимости.
    * @return {boolean} признак видимости.
    */
-  function isElemVisible(element, isPartially = false) {
+  function isElemVisible(element: Element, isPartially: boolean = false): boolean {
     const elementBoundary = element.getBoundingClientRect();
 
     const top = elementBoundary.top;
