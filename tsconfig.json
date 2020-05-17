@@ -6,6 +6,6 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noEmitOnError": true,
-        "target": "es5"
+        "target": "es6"
     }
 }

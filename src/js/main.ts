@@ -66,19 +66,40 @@ function submitData(event: Event) {
     text: (formElements.namedItem('text') as HTMLTextAreaElement).value,
   };
 
-  const xmlHttpObj = window.XMLHttpRequest ? new XMLHttpRequest() : false; // создание объекта XHR
-  if (xmlHttpObj) {
-    xmlHttpObj.open('POST', '/upload');
-    // добавление заголовка в запрос
-    xmlHttpObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // обработчик изменения состояния запроса
-    xmlHttpObj.onreadystatechange = function() {
-      if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200) {
-        alert(xmlHttpObj.responseText);
+  const promise = function(url: string) {
+    return new Promise((resolve, reject) => {
+      const xhr = window.XMLHttpRequest ? new XMLHttpRequest() : false;
+      if (xhr) {
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.timeout = 10000;
+        // обработчик полученного ответа от запроса
+        xhr.onload = function() {
+          if (this.status == 200) {
+            resolve(this.response);
+          } else {
+            const error = new Error(this.statusText);
+            // TODO: create http error
+            // error.code = this.status;
+            reject(error);
+          }
+        };
+        // обработчик ситуации, когда запрос не получилось выполнить
+        xhr.onerror = function() {
+          reject(new Error('Ошибка соединения.'));
+        };
+        xhr.ontimeout = function() {
+          reject(new Error('Ошибка: время ожидания ответа вышло.'));
+        };
+        // eslint-disable-next-line max-len
+        xhr.send(`name=${comment.name}&mail=${comment.mail}&text=${comment.text}`);
+      } else {
+        reject(new TypeError('XMLHttpRequest не существует в области видимости window.'));
       }
-    };
+    });
+  };
 
-    // eslint-disable-next-line max-len
-    xmlHttpObj.send(`name=${comment.name}&mail=${comment.mail}&text=${comment.text}`);
-  }
+  promise('/upload')
+      .then(response => alert(response))
+      .catch(error => console.error(error.message));
 }

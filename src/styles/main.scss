@@ -58,6 +58,11 @@ ul {
     margin-top: 32px;
 }
 
+ul li {
+    list-style-type: circle;
+    list-style-image: url('listImg.png');
+}
+
 button.Rectangle {
     margin-top: 32px;
     width: 176px;
