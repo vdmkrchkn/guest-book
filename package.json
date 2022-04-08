@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "config": "^1.30.0",
-    "moment": "^2.22.0",
+    "moment": "^2.29.2",
     "mongodb": "^3.0.4",
     "mongoose": "^5.7.5",
     "nconf": "^0.10.0",
