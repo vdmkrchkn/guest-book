@@ -4,8 +4,8 @@
 const fs = require('fs');
 const log = require('./log');
 const Comment = require('./models/comment').Comment;
-const querystring = require('querystring');
 const path = require('path');
+
 /**
  * Отображение начальной страницы.
  * @param {any} response - объект ответа.
@@ -25,7 +25,7 @@ function start(response) {
 }
 
 /**
- * Добавление комментария в хранилище
+ * Добавление комментария.
  * @param {any} response - объект ответа.
  * @param {any} postData
  */
@@ -33,20 +33,30 @@ function upload(response, postData) {
   log.info('Request handler \'upload\' was called.');
 
   if (postData) {
-    const name = querystring.parse(postData).name;
-    const mail = querystring.parse(postData).mail;
-    const comment = querystring.parse(postData).text;
+    const name = JSON.parse(postData).name;
+    const mail = JSON.parse(postData).mail;
+    const comment = JSON.parse(postData).text;
 
     const newComment = new Comment({
-      name: name, email: mail, text: comment,
+      name, email: mail, text: comment,
     });
 
-    // запись в хранилище
     newComment.save(function(err, comment) {
-      if (err) return log.error(err);
+      if (err) {
+        log.error(err);
 
-      log.info(`New comment from ${comment.getContact()} was added.`);
+        response.writeHead(500, err);
+        response.end();
+      } else {
+        log.info(`New comment from ${comment.getContact()} was added.`);
+
+        response.writeHead(200, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({dt: comment.getPrettyDateTime()}));
+      }
     });
+  } else {
+    response.writeHead(400, 'No data provided');
+    response.end();
   }
 }
 

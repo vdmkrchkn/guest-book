@@ -19,16 +19,16 @@ const path = {
     fonts: 'build/fonts/',
   },
   src: { // пути откуда брать исходники
-    html: 'src/*.html',
-    ts: 'src/js/main.ts', // В скриптах только main файлы
-    style: 'src/styles/main.scss', // и стилях
+    html: 'src/client/*.html',
+    ts: 'src/client/scripts/main.ts', // В скриптах только main файлы
+    style: 'src/client/styles/main.scss', // и стилях
     img: 'src/img/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
     fonts: 'src/fonts/**/*.*',
   },
   watch: { // типы файлов, за изменением которых наблюдать
-    html: 'src/**/*.html',
-    js: 'src/js/**/*.ts',
-    style: 'src/styles/**/*.scss',
+    html: 'src/client/*.html',
+    js: 'src/client/scripts/*.ts',
+    style: 'src/client/styles/**/*.scss',
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*',
   },

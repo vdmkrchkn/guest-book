@@ -1,7 +1,7 @@
 {
   "name": "guest-book",
   "version": "2.0.0",
-  "description": "test",
+  "description": "guest-book",
   "main": "index.js",
   "dependencies": {
     "config": "^3.3.8",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "gulp-build": "gulp",
+    "build": "gulp",
     "clean": "rm -rf node_modules/",
     "gulp-clean": "gulp clean",
     "eslint": "node_modules/.bin/eslint src/",

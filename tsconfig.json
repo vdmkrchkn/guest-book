@@ -1,8 +1,8 @@
 {
     "files": [
-        "src/js/main.ts",
-        "src/js/addComment.ts",
-        "src/js/imgScroll.ts"
+        "src/client/scripts/main.ts",
+        "src/client/scripts/addComment.ts",
+        "src/client/scripts/imgScroll.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
