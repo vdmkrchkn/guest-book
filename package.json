@@ -9,6 +9,7 @@
     "mongodb": "^3.0.4",
     "mongoose": "^5.7.5",
     "nconf": "^0.10.0",
+    "node-static": "^0.7.11",
     "winston": "^2.4.1"
   },
   "devDependencies": {
@@ -31,7 +32,7 @@
     "start": "node src/index.js",
     "build": "gulp",
     "clean": "rm -rf node_modules/",
-    "gulp-clean": "gulp clean",
+    "build:clean": "gulp clean",
     "eslint": "node_modules/.bin/eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

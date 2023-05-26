@@ -60,7 +60,7 @@ ul {
 
 ul li {
     list-style-type: circle;
-    list-style-image: url('listImg.png');
+    list-style-image: url('../assets/img/listImg.png');
 }
 
 button.Rectangle {
@@ -86,9 +86,7 @@ button.Rectangle:hover {
 
 .img-back {
     position: absolute;
-    width: 840px;
     height: inherit;
-    background-color: #a6adb2;
 }
 
 .img-front {
@@ -97,8 +95,7 @@ button.Rectangle:hover {
     transition-property: top;
     transition-duration: 3s;
     width: 488px;
-    height: 479px;
-    background-color: #c4c7c8;
+    height: 225px;
 }
 
 // left shifted
@@ -113,7 +110,5 @@ button.Rectangle:hover {
 
 .img-back_2 {
     position: absolute;
-    width: 488px;
     height: inherit;
-    background-color: #a6adb2;
 }

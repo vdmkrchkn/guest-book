@@ -15,21 +15,20 @@ const path = {
     html: 'build/',
     js: 'build/js/',
     css: 'build/css/',
-    img: 'build/img/',
+    img: 'build/assets/img/',
     fonts: 'build/fonts/',
   },
   src: { // пути откуда брать исходники
     html: 'src/client/*.html',
     ts: 'src/client/scripts/main.ts', // В скриптах только main файлы
     style: 'src/client/styles/main.scss', // и стилях
-    img: 'src/img/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
+    img: 'src/client/assets/img/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
     fonts: 'src/fonts/**/*.*',
   },
   watch: { // типы файлов, за изменением которых наблюдать
     html: 'src/client/*.html',
     js: 'src/client/scripts/*.ts',
     style: 'src/client/styles/**/*.scss',
-    img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*',
   },
   clean: './build',
@@ -68,7 +67,13 @@ gulp.task('js:build', function(cb) {
   cb();
 });
 
-gulp.task('build', gulp.series('style:build', 'js:build', 'html:build'));
+gulp.task('img:copy', cb => {
+  gulp.src(path.src.img)
+      .pipe(gulp.dest(path.build.img));
+  cb();
+});
+
+gulp.task('build', gulp.series('style:build', 'js:build', 'html:build', 'img:copy'));
 
 // задача на запуск задач, соответствующих измененному файлу
 gulp.task('watch', function(cb) {
