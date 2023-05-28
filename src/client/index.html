@@ -14,7 +14,7 @@
         //= templates/header.html
         <section>
             <div class="row">
-                <div class="flex-col">
+                <div class="col">
                     <div id="header">
                         Полипропилен
                     </div>
@@ -58,14 +58,14 @@
             </div>
             <div class="row">
                 <div class="img-container">
-                    <div class="img-back_2">
+                    <div class="img-back">
                         <img src="assets/img/cat-1.jpg" />
                     </div>
                     <div id="elem-pos-right" class="img-front">
                         <img src="assets/img/cat-5.jpg" />
                     </div>
                 </div>
-                <div class="flex-col ml-104">
+                <div class="col ml-104">
                     <div class="header-bold_2">
                         Хороший язык?
                     </div>
@@ -91,17 +91,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="header-bold_2">
-                    Возможности и цены
-                </div>
-                <table></table>
-                <div>
-                    <div>
-                        <img src="assets/img/cat-1.jpg" class="hidden" />
+                <div class="col">
+                    <div class="header-bold_2">
+                        Комментарии
                     </div>
-                    <div>
-                        <img src="assets/img/cat-5.jpg" class="hidden" />
-                    </div>
+                    <table id="comments">
+                        <tr>
+                            <th>Name</th>
+                            <th>E-mail</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
             //= templates/addComment.html
