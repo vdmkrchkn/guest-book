@@ -1,17 +1,18 @@
+import {addHttpComment, addHtmlComment} from './addComment';
 // eslint-disable-next-line no-unused-vars
-import {addComment, IFeedbackComment} from './addComment';
+import {IFeedbackCommentResponse} from './comment';
 import {throttleScroll} from './imgScroll';
 
 window.onload = function() {
   const form = document.getElementById('data');
-  form?.addEventListener('submit', addComment);
+  form?.addEventListener('submit', addHttpComment);
 
   const commentContainer = document.getElementById('comments');
   if (commentContainer) {
     fetch('/show')
         .then(response => response.json())
-        .then((comments: Array<IFeedbackComment>) =>
-          comments.forEach(comment => commentContainer.append(getCommentElement(comment))))
+        .then((comments: Array<IFeedbackCommentResponse>) =>
+          comments.forEach(comment => commentContainer.append(addHtmlComment(comment))))
         .catch(error => alert(error));
 
     new (Subscriber as any)('/subscribe', commentContainer);
@@ -20,23 +21,9 @@ window.onload = function() {
   window.addEventListener('scroll', throttleScroll, false);
 };
 
-// eslint-disable-next-line require-jsdoc
-function getCommentElement(comment: any) {
-  const containerElem = document.createElement('tr');
-  for (const key in comment) {
-    if (Object.prototype.hasOwnProperty.call(comment, key)) {
-      const dataElem = document.createElement('td');
-      dataElem.append(comment[key]);
-      containerElem.append(dataElem);
-    }
-  }
-
-  return containerElem;
-}
-
 /**
-  * @param {url} url - адрес для вызова долгих опросов,
-  * @param {elem} elem - элемент DOM, куда добавлять новую запись.
+  * @param {string} url адрес для вызова долгих опросов,
+  * @param {HTMLElement} elem DOM узел, куда добавлять запись.
 */
 function Subscriber(url: string, elem: HTMLElement) {
   // eslint-disable-next-line require-jsdoc
@@ -56,7 +43,7 @@ function Subscriber(url: string, elem: HTMLElement) {
       await subscribe();
     } else {
       const comment = await response.json();
-      elem.append(getCommentElement(comment));
+      elem.append(addHtmlComment(comment));
       await subscribe();
     }
   }

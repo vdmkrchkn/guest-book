@@ -15,18 +15,18 @@ const path = {
     html: 'build/',
     js: 'build/js/',
     css: 'build/css/',
-    img: 'build/assets/img/',
+    images: 'build/images/',
     fonts: 'build/fonts/',
   },
   src: { // пути откуда брать исходники
-    html: 'src/client/*.html',
+    html: 'src/client/**/*.html',
     ts: 'src/client/scripts/main.ts', // В скриптах только main файлы
     style: 'src/client/styles/main.scss', // и стилях
-    img: 'src/client/assets/img/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
+    images: 'src/client/images/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
     fonts: 'src/fonts/**/*.*',
   },
   watch: { // типы файлов, за изменением которых наблюдать
-    html: 'src/client/*.html',
+    html: 'src/client/**/*.html',
     js: 'src/client/scripts/*.ts',
     style: 'src/client/styles/**/*.scss',
     fonts: 'src/fonts/**/*.*',
@@ -68,8 +68,8 @@ gulp.task('js:build', function(cb) {
 });
 
 gulp.task('img:copy', cb => {
-  gulp.src(path.src.img)
-      .pipe(gulp.dest(path.build.img));
+  gulp.src(path.src.images)
+      .pipe(gulp.dest(path.build.images));
   cb();
 });
 

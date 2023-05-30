@@ -1,40 +1,16 @@
-export interface IFeedbackComment {
-  name: string;
-  mail: string;
-  text: string;
-  dt?: Date;
-}
+/* eslint-disable no-unused-vars */
+import {
+  IFeedbackComment,
+  IFeedbackCommentResponse,
+  isCommentValid,
+} from './comment';
 
-interface IValidator {
-  isValid(): boolean;
-}
 
-/** Класс, реализующий проверку полей на непустоту. */
-class FeedbackCommentNotEmpty implements IFeedbackComment, IValidator {
-  name: string;
-  mail: string;
-  text: string;
-  dt?: Date;
-
-  // eslint-disable-next-line require-jsdoc
-  constructor({name, mail, text}: IFeedbackComment) {
-    this.name = name;
-    this.mail = mail;
-    this.text = text;
-  }
-
-  // eslint-disable-next-line require-jsdoc
-  isValid = function() {
-    // eslint-disable-next-line no-invalid-this
-    return this.name && this.mail && this.text;
-  }
-}
-
-/** Добавить комментарий
+/** Отправить команду на добавление комментария на сервере.
  * @this form
  * @param {Event} event
 */
-export async function addComment(event: Event) {
+export async function addHttpComment(event: Event) {
   event.preventDefault();
 
   const comment: IFeedbackComment = {
@@ -43,7 +19,7 @@ export async function addComment(event: Event) {
     text: (this.elements.namedItem('text') as HTMLTextAreaElement).value,
   };
 
-  if (new FeedbackCommentNotEmpty(comment).isValid()) {
+  if (isCommentValid(comment)) {
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 10000);
 
@@ -55,7 +31,7 @@ export async function addComment(event: Event) {
       });
 
       if (response.ok) {
-        const comment: IFeedbackComment = await response.json();
+        const comment: IFeedbackCommentResponse = await response.json();
         this.reset();
         alert(`Комментарий отправлен в ${comment.dt}`);
       } else {
@@ -65,4 +41,20 @@ export async function addComment(event: Event) {
       alert(error.message);
     }
   }
+}
+
+/**
+ * Добавить комментарий на клиенте.
+ * @param {IFeedbackCommentResponse} comment комментарий,
+ * @return {HTMLTableRowElement} узел HTML.
+ */
+export function addHtmlComment(comment: IFeedbackCommentResponse): HTMLTableRowElement {
+  const containerElem = document.createElement('tr');
+  Object.keys(comment).forEach(key => {
+    const dataElem = document.createElement('td');
+    dataElem.append(comment[key]);
+    containerElem.append(dataElem);
+  });
+
+  return containerElem;
 }
