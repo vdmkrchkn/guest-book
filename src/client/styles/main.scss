@@ -3,13 +3,11 @@
     src: url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic");
 } */ /* TODO: connect this way */
 
+@import 'addComment';
+
 body {
     font-family: "Open Sans", sans-serif;
     margin: 0;
-}
-
-.hidden {
-    display: none;
 }
 
 .ml-104 {
@@ -17,21 +15,53 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+    @extend %col-shared;
     margin: 0 352px;
 }
 
-.row {
+%row-shared {
     display: flex;
     margin-top: 10px;
 }
 
-.flex-col {
+.row {
+    @extend %row-shared;
+}
+
+.row-centered {
+    @extend %row-shared;
+    justify-content: center;
+}
+
+.header {
+    @extend %row-shared;
+    justify-content: space-between;
+    align-items: center;
+
+    .bold_2 {
+        font-size: 48px;
+        font-weight: bold;
+    }
+}
+
+%col-shared {
     display: flex;
     flex-direction: column;
-    flex-basis: 50%;
 }
+
+.col {
+    @extend %col-shared;
+}
+
+.col-centered {
+    @extend %col-shared;
+    align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 
 #header {
     font-size: 74px;
@@ -42,13 +72,7 @@ body {
     font-weight: bold;
 }
 
-.header-bold_2 {
-    font-size: 48px;
-    font-weight: bold;
-}
-
 p.description {
-    margin-top: 64px;
     font-size: 16px;
     font-weight: normal; /* FIXME: bold 4 OpenSans */
     line-height: 1.63;
@@ -56,28 +80,32 @@ p.description {
 
 ul {
     margin-top: 32px;
+    li {
+        list-style-type: circle;
+        list-style-image: url('../images/listImg.gif');
+    }
 }
 
-ul li {
-    list-style-type: circle;
-    list-style-image: url('../assets/img/listImg.png');
-}
+$button-primary-color: white;
+$button-border-color: red;
 
-button.Rectangle {
-    margin-top: 32px;
+.button-primary {
+    min-width: 202px;
     width: 176px;
     height: 48px;
-    background-color: white;
-    border: solid 2px red;
+    font-family: inherit;
+    background-color: $button-primary-color;
+    border: solid 2px $button-border-color;
     box-shadow: 2px 2px 10px 0 rgba(236, 0, 109, 0.15);
     padding: 14px 44px 15px;
     transition-property: background-color, color;
     transition-duration: 1000ms, 500ms;
-}
 
-button.Rectangle:hover {
-    background-color: red;
-    color: white;
+    &:hover {
+        background-color: $button-border-color;
+        color: $button-primary-color;
+        cursor: pointer;
+    }
 }
 
 .img-container {
@@ -106,9 +134,4 @@ button.Rectangle:hover {
 // right shifted
 #elem-pos-right {
     left: 104px;
-}
-
-.img-back_2 {
-    position: absolute;
-    height: inherit;
 }

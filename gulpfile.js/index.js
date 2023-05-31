@@ -23,13 +23,13 @@ const path = {
     ts: 'src/client/scripts/main.ts', // В скриптах только main файлы
     style: 'src/client/styles/main.scss', // и стилях
     images: 'src/client/images/**/*.*', // взять все файлы всех расширений из папки и из вложенных каталогов
-    fonts: 'src/fonts/**/*.*',
+    fonts: 'src/client/fonts/**/*.*',
   },
   watch: { // типы файлов, за изменением которых наблюдать
     html: 'src/client/**/*.html',
     js: 'src/client/scripts/*.ts',
     style: 'src/client/styles/**/*.scss',
-    fonts: 'src/fonts/**/*.*',
+    fonts: 'src/client/fonts/**/*.*',
   },
   clean: './build',
 };

@@ -1,0 +1,53 @@
+.skip {
+    position: absolute;
+    top: -100%;
+}
+
+.label {
+    font-size: 0.875rem;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.comment-input {
+    padding: 10px 12px;
+    visibility: visible;
+}
+
+.button-group {
+    @extend %row-shared;
+    justify-content: space-around;
+
+    .button {
+        font-family: inherit;
+        font-size: 0.9em;
+        border: solid 2px;
+        border-radius: 8px;
+        padding: 0.45em 0.9em;
+        background-color: white;
+        transition-property: background-color, color;
+        transition-duration: 1000ms, 500ms;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .button.submit {
+        border-color: lightgreen;
+
+        &:hover {
+            background-color: lightgreen;
+        }
+    }
+
+    .button.reset {
+        border-color: red;
+
+        &:hover {
+            background-color: red;
+        }
+    }
+}

@@ -1,18 +1,48 @@
-<section>
+<div class="skip">
     <form id="data" method="post">
-        <p>
-            <b>Ваше имя:</b><br>
-            <input type="text" name="name" size="20" required/>
-        </p>
-        <p>
-            <b>Ваш e-mail:</b><br>
-            <input type="text" name="mail" size="20" required/>
-        </p>
-        <p>
-            Комментарий<br>
-            <textarea name="text" rows="5" cols="20" required></textarea>
-        </p>
-        <input type="submit" value="Отправить" />
-        <input type="reset" value="Очистить">
+        <div class="col hidden">
+            <div class="label bold">
+                Ваше имя:*
+            </div>
+            <input
+                type="text"
+                name="name"
+                placeholder="Введите имя"
+                class="comment-input"
+                required
+            />
+        </div>
+        <div class="col hidden">
+            <div class="row label bold">
+                Ваш e-mail:*
+            </div>
+            <input
+                type="text"
+                name="mail"
+                placeholder="Введите электронную почту"
+                class="comment-input"
+                size="25"
+                required
+            />
+        </div>
+        <div class="col">
+            <div class="row label">
+                Текст:*
+            </div>
+            <textarea
+                name="text"
+                rows="5"
+                class="comment-input"
+                required>
+            </textarea>
+        </div>
+        <div class="button-group">
+            <button class="button submit">
+                Отправить
+            </button>
+            <button type="reset" class="button reset">
+                Очистить
+            </button>
+        </div>
     </form>
-</section>
+</div>
