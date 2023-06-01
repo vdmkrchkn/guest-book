@@ -31,9 +31,8 @@ export async function addHttpComment(event: Event) {
       });
 
       if (response.ok) {
-        const comment: IFeedbackCommentResponse = await response.json();
         this.reset();
-        alert(`Комментарий отправлен в ${comment.dt}`);
+        (this.parentNode as HTMLElement).className = 'skip';
       } else {
         throw new Error(`Ошибка HTTP: ${response.status}`);
       }

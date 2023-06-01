@@ -21,7 +21,7 @@ window.onload = function() {
   window.addEventListener('scroll', throttleScroll, false);
   const addCommentBtn = document.querySelector('button[name=\'addComment\']');
   addCommentBtn.addEventListener('click', () => {
-    document.querySelector('.skip').className = 'row-centered';
+    (form.parentNode as HTMLElement).className = 'row-centered';
   });
 };
 
