@@ -109,12 +109,11 @@ $button-border-color: red;
 }
 
 .img-container {
-    height: 720px;
+    height: 500px;
 }
 
 .img-back {
     position: absolute;
-    height: inherit;
 }
 
 .img-front {
@@ -122,8 +121,6 @@ $button-border-color: red;
     top: 241px;
     transition-property: top;
     transition-duration: 3s;
-    width: 488px;
-    height: 225px;
 }
 
 // left shifted
