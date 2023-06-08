@@ -18,13 +18,13 @@ export function throttleScroll(event: Event) {
   * @param {Event} e - scroll event.
 */
 function scrollEventHandler(e: Event) {
-  const images = document.querySelectorAll('.img-front');
+  const images = document.querySelectorAll<HTMLElement>('.img-front');
 
   images.forEach(image => {
     if (isElemVisible(image)) {
-      (image as HTMLElement).style.top = '211px';
+      image.style.top = '211px';
     } else {
-      (image as HTMLElement).style.top = '241px';
+      image.style.top = '241px';
     }
   });
 }
